@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>Pledge of Silence: reporting sexual violence in U.S. Greek life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F3EF; --panel:#FFFFFF; --ink:#1E2433; --muted:#555D6E; --line:#D5D8D0;
+  --plum:#6B2D5C; --plum-ink:#FFFFFF; --sage:#4F6657; --sage-soft:#E3EAE3; --plum-soft:#F1E6EE;
+  --focus:#2C6BD6;
+  --serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#15181F; --panel:#1D212B; --ink:#E8E9E4; --muted:#A8ADB8; --line:#343A47;
+    --plum:#C98AB7; --plum-ink:#1B0F18; --sage:#9DB8A4; --sage-soft:#222B25; --plum-soft:#2A1F28; --focus:#7FA8F0;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15181F; --panel:#1D212B; --ink:#E8E9E4; --muted:#A8ADB8; --line:#343A47;
+  --plum:#C98AB7; --plum-ink:#1B0F18; --sage:#9DB8A4; --sage-soft:#222B25; --plum-soft:#2A1F28; --focus:#7FA8F0;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:var(--plum);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(clamp(22px,6vw,36px),env(safe-area-inset-left,0px));padding-right:max(clamp(22px,6vw,36px),env(safe-area-inset-right,0px))}
+.measure{max-width:66ch}
+
+/* Top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:18px;min-height:60px}
+.brand{font-family:var(--serif);font-size:1.35rem;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+nav{flex:1;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav ul{list-style:none;display:flex;gap:4px;margin:0;padding:0}
+nav a{display:block;padding:8px 12px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:.95rem;white-space:nowrap}
+nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+nav a:hover{color:var(--ink)}
+.exit{flex:none;background:var(--ink);color:var(--paper);border:0;border-radius:6px;padding:9px 14px;font:600 .9rem var(--sans);cursor:pointer}
+.exit small{display:block;font-weight:400;font-size:.7rem;opacity:.75}
+@media (max-width:760px){
+  .bar .wrap{flex-wrap:wrap;gap:8px 12px;padding-top:8px;padding-bottom:8px}
+  nav{order:3;flex-basis:100%}
+  .brand{flex:1}
+}
+
+/* Warning strip */
+.cw{background:var(--sage-soft);color:var(--ink);font-size:.92rem}
+.cw .wrap{padding-top:10px;padding-bottom:10px}
+
+main section[hidden]{display:none}
+.page{padding:48px 0 80px}
+
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.2rem,5.6vw,4rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,3.2vw,2.2rem)}
+h3{font-size:1.3rem}
+p{margin:0 0 1em}
+.lede{font-size:1.18rem;color:var(--muted);max-width:60ch}
+
+/* Hero */
+.hero{position:relative;padding:56px 0 40px;overflow:hidden}
+.letters{font-family:var(--serif);font-size:clamp(5rem,17vw,13rem);line-height:.85;color:transparent;-webkit-text-stroke:1px var(--line);letter-spacing:.04em;user-select:none;white-space:nowrap;margin-bottom:-.35em}
+.letters span{display:inline-block;transition:color 1.4s ease}
+.letters.lit span{color:var(--plum-soft)}
+@media (prefers-reduced-motion:reduce){.letters span{transition:none}}
+.hero h1{position:relative;max-width:16ch}
+.hero .lede{position:relative}
+
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink);margin-top:40px}
+.paths a{display:block;padding:22px 22px 26px 0;color:var(--ink);text-decoration:none;border-right:1px solid var(--line);padding-left:22px}
+.paths a:first-child{padding-left:0}
+.paths a:last-child{border-right:0}
+.paths h3{margin-bottom:.3em}
+.paths p{color:var(--muted);margin:0;font-size:.98rem}
+.paths a:hover h3{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:760px){
+  .paths{grid-template-columns:1fr}
+  .paths a{border-right:0;border-bottom:1px solid var(--line);padding-left:0}
+}
+
+.help-now{margin-top:48px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--sage);padding:20px 24px;border-radius:4px}
+.help-now p{margin:0}
+.help-now strong{font-weight:700}
+
+.why{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;margin-top:64px;align-items:start}
+@media (max-width:760px){.why{grid-template-columns:1fr;gap:12px}}
+
+/* Form */
+.form-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;margin-bottom:36px}
+@media (max-width:760px){.form-intro{grid-template-columns:1fr;gap:16px}}
+.aside{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 20px;font-size:.95rem}
+.aside h3{font-size:1.05rem;font-family:var(--sans);font-weight:700;margin-bottom:.4em}
+.aside ul{margin:0;padding-left:1.1em}
+.aside li{margin-bottom:.4em}
+form{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px 28px 28px}
+fieldset{border:0;border-top:1px solid var(--line);margin:0;padding:24px 0 6px}
+fieldset:first-of-type{border-top:0}
+legend{font-family:var(--serif);font-size:1.3rem;font-weight:600;padding:0;margin-bottom:4px}
+.hint{color:var(--muted);font-size:.92rem;margin:0 0 14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:620px){.row{grid-template-columns:1fr}}
+label.f{display:block;font-weight:500;margin-bottom:14px}
+label.f span{display:block;margin-bottom:6px}
+input[type=text],select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+textarea{min-height:200px;resize:vertical;line-height:1.55}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px solid var(--focus);outline-offset:1px}
+.choices{display:grid;gap:8px;margin-bottom:16px}
+.choices label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:4px;cursor:pointer;background:var(--paper)}
+.choices input{margin-top:5px;accent-color:var(--plum)}
+.choices label:has(input:checked){border-color:var(--plum);background:var(--plum-soft)}
+.names-warning{background:var(--plum-soft);border-radius:4px;padding:12px 14px;font-size:.93rem;margin:0 0 14px}
+.submit-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:10px}
+.btn{background:var(--plum);color:var(--plum-ink);border:0;border-radius:6px;padding:13px 22px;font:700 1rem var(--sans);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.status{margin-top:18px;padding:14px 16px;border-radius:4px;background:var(--sage-soft);display:none}
+.status.show{display:block}
+
+/* Research */
+.stat{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line)}
+.stat:last-of-type{border-bottom:1px solid var(--line)}
+.stat .fig{font-family:var(--serif);font-size:clamp(2.6rem,6vw,3.6rem);line-height:1;color:var(--plum)}
+.stat .fig small{display:block;font-family:var(--sans);font-size:.85rem;color:var(--muted);margin-top:8px;line-height:1.4}
+.stat p{margin-bottom:.5em}
+.src{font-size:.88rem;color:var(--muted)}
+@media (max-width:620px){.stat{grid-template-columns:1fr;gap:6px}}
+.note{font-size:.95rem;color:var(--muted);margin-top:28px}
+
+/* Cases */
+.timeline{list-style:none;margin:28px 0 0;padding:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 36px 28px}
+.timeline li::before{content:"";position:absolute;left:-7px;top:.55em;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--plum)}
+.timeline .yr{font-family:var(--serif);font-size:1.05rem;color:var(--muted)}
+.timeline h3{margin:.1em 0 .35em}
+.status-line{font-size:.9rem;display:inline-block;background:var(--sage-soft);padding:2px 10px;border-radius:999px;margin-bottom:10px}
+
+/* Support */
+.support-grid{display:grid;grid-template-columns:220px 1fr;gap:40px;margin-top:28px}
+.toc{position:sticky;top:90px;align-self:start;font-size:.95rem}
+.toc ul{list-style:none;padding:0;margin:0}
+.toc a{display:block;padding:6px 0;color:var(--muted);text-decoration:none}
+.toc a:hover{color:var(--ink)}
+@media (max-width:820px){.support-grid{grid-template-columns:1fr}.toc{position:static}.toc ul{display:flex;flex-wrap:wrap;gap:4px 16px}}
+.res-block{margin-bottom:44px}
+.res{padding:16px 0;border-top:1px solid var(--line)}
+.res h4{font-family:var(--sans);font-size:1.02rem;font-weight:700;margin:0 0 4px}
+.res p{margin:0 0 4px;font-size:.97rem}
+.res .how{font-size:.95rem}
+.hot{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:20px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.hot h4{margin:0 0 4px;font-size:1rem}
+.hot p{margin:0;font-size:.97rem}
+.hot .num{font-family:var(--serif);font-size:1.4rem}
+
+@media (max-width:620px){
+  form{padding:4px 20px 24px}
+  .aside,.hot,.help-now{padding:18px 20px}
+  .page{padding:36px 0 64px}
+  .hero{padding:40px 0 28px}
+  .paths a{padding:20px 0}
+  .timeline li{padding-left:22px}
+  .choices label{padding:12px 14px}
+}
+.embed-wrap{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.embed-wrap iframe{display:block;width:100%;height:85vh;min-height:620px;border:0;background:#fff}
+.embed-alt{font-size:.95rem;color:var(--muted);margin-top:14px}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:.9rem;color:var(--muted)}
+footer p{margin:0 0 .5em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#home" data-route="home">Pledge of Silence</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#home" data-route="home">Home</a></li>
+        <li><a href="#report" data-route="report">Share what happened</a></li>
+        <li><a href="#research" data-route="research">The research</a></li>
+        <li><a href="#cases" data-route="cases">Cases</a></li>
+        <li><a href="#support" data-route="support">Get support</a></li>
+        <li><a href="#privacy" data-route="privacy">Privacy</a></li>
+      </ul>
+    </nav>
+    <button class="exit" id="exit" type="button" aria-label="Leave this site now">Leave now<small>or press Esc twice</small></button>
+  </div>
+</header>
+
+<div class="cw" role="note">
+  <div class="wrap">This site discusses sexual violence. If you need to talk to someone right now, call <a href="tel:18006564673">800.656.4673</a> or text HOPE to <a href="sms:64673&body=HOPE">64673</a>. Free and confidential, 24/7.</div>
+</div>
+
+<main>
+
+<!-- HOME -->
+<section id="home" data-page>
+  <div class="wrap">
+    <div class="hero">
+      <div class="letters" aria-hidden="true" id="letters"><span>Σ</span><span>Φ</span><span>Κ</span><span>Δ</span><span>Χ</span><span>Ψ</span></div>
+      <h1>What happened at the house doesn't have to stay there.</h1>
+      <p class="lede">Greek life runs on loyalty and silence. This is where the silence breaks. We collect anonymous accounts of sexual violence connected to fraternities and sororities on U.S. campuses. Every account is counted by campus and chapter, so the pattern is on the record even when the institutions look away.</p>
+    </div>
+
+    <div class="paths">
+      <a href="#report" data-route="report">
+        <h3>Share what happened</h3>
+        <p>Anonymous. Tell us as much or as little as you want, from last semester or from decades ago.</p>
+      </a>
+      <a href="#support" data-route="support">
+        <h3>Find support</h3>
+        <p>Hotlines, free medical care, counseling and legal help, including options if you have no insurance.</p>
+      </a>
+      <a href="#research" data-route="research">
+        <h3>See the evidence</h3>
+        <p>Peer-reviewed research and the cases that made headlines, with links to every source.</p>
+      </a>
+    </div>
+
+    <div class="why">
+      <h2>Why chapters, and not names</h2>
+      <div class="measure">
+        <p>Survivors are told their story is a single bad night, one bad guy, a misunderstanding. Chapter-level data tells a different story: the same houses, the same parties, the same group chats, year after year.</p>
+        <p>We ask where it happened and which chapter was involved. We do not publish the names of individuals, yours or anyone else's. That protects you, and it keeps the focus on the organizations and universities that let this continue.</p>
+        <p>Pledge of Silence is not a police report or a Title IX complaint. If you want either of those, our <a href="#support" data-route="support">support page</a> explains how, and nothing you share here stops you from doing it later.</p>
+      </div>
+    </div>
+
+    <div class="help-now">
+      <p><strong>If this happened recently:</strong> you can get a free forensic medical exam at most hospitals without reporting to police, and medication to prevent HIV works best if started within 72 hours. <a href="#support-medical" data-route="support" data-anchor="support-medical">What to know about medical care</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT -->
+<section id="report" data-page hidden>
+  <div class="wrap page">
+    <div class="form-intro">
+      <div>
+        <h1>Share what happened</h1>
+        <p class="lede">Every question is optional. Skip anything, stop anytime. You won't be asked for your name, email, or phone number.</p>
+      </div>
+      <div class="aside">
+        <h3>Before you start</h3>
+        <ul>
+          <li>For more privacy, use a private or incognito window on a device that's yours.</li>
+          <li>Campus Wi-Fi can be monitored. Mobile data or home internet is safer.</li>
+          <li>The form is end-to-end encrypted through CryptPad. Not even the form host can read what you write.</li>
+          <li>Every account is reviewed by a person before anything is published.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="embed-wrap">
+      <iframe src="https://cryptpad.fr/form/#/3/form/view/4d4440dffe3f1b130352a3abf3295c24/p/embed/" title="Share what happened: anonymous form" referrerpolicy="no-referrer" loading="lazy"></iframe>
+    </div>
+    <p class="embed-alt">Form not showing, or easier to read full screen? <a href="https://cryptpad.fr/form/#/3/form/view/4d4440dffe3f1b130352a3abf3295c24/p/" target="_blank" rel="noopener noreferrer">Open the form in a new window</a>.</p>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" data-page hidden>
+  <div class="wrap page">
+    <h1>The research</h1>
+    <p class="lede">Decades of studies point in the same direction. These are the findings most often cited, with the original sources linked.</p>
+
+    <div class="stat">
+      <div class="fig">3×<small>more likely to commit sexual assault</small></div>
+      <div>
+        <p>First-year men who joined fraternities were three times more likely to commit sexual assault than men who didn't join, even though the two groups looked similar when they arrived on campus.</p>
+        <p class="src">Foubert, Newberry &amp; Tatum (2007), <i>NASPA Journal</i> 44(4). <a href="https://www.academia.edu/14925590" target="_blank" rel="noopener noreferrer">Read the study</a></p>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="fig">29%<small>of sorority women reported being assaulted, vs. 7% of non-members</small></div>
+      <div>
+        <p>In a survey of 779 women at a public university, sorority members were four times as likely to have been sexually assaulted during college. The gap stayed large even after accounting for drinking and attendance at Greek parties.</p>
+        <p class="src">Minow &amp; Einolf (2009), <i>Violence Against Women</i> 15(7). <a href="https://pubmed.ncbi.nlm.nih.gov/19458092/" target="_blank" rel="noopener noreferrer">Abstract on PubMed</a></p>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="fig">26.4%<small>of undergraduate women, at schools surveyed in 2015 and 2019</small></div>
+      <div>
+        <p>The largest campus climate survey in the U.S., with more than 181,000 students at 33 schools, found that nonconsensual sexual contact by force or incapacitation among undergraduate women went up between 2015 and 2019, not down.</p>
+        <p class="src">Association of American Universities, 2019 Campus Climate Survey. <a href="https://www.aau.edu/newsroom/press-releases/aau-releases-2019-survey-sexual-assault-and-misconduct" target="_blank" rel="noopener noreferrer">AAU summary</a></p>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="fig">87%<small>of alcohol-involved campus assaults committed by repeat offenders</small></div>
+      <div>
+        <p>A decade of survey data from nearly 50 colleges found that most alcohol-involved sexual assaults were committed by men who did it more than once, and that fraternity members and athletes were more likely than other students to be among them.</p>
+        <p class="src">Foubert, Clark-Taylor &amp; Wall (2020), <i>Violence Against Women</i>. <a href="https://www.sportsmedres.org/its-not-boys-being-boys-on-college/" target="_blank" rel="noopener noreferrer">Summary of findings</a></p>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="fig">4 in 5<small>assaults of college women never reported to police</small></div>
+      <div>
+        <p>Federal crime data found that about 80% of rapes and sexual assaults of female college students went unreported to law enforcement. Accounts like the ones collected here are a large part of what official numbers miss.</p>
+        <p class="src">Sinozich &amp; Langton, U.S. Bureau of Justice Statistics (2014). <a href="https://bjs.ojp.gov/content/pub/pdf/rsavcaf9513.pdf" target="_blank" rel="noopener noreferrer">BJS report (PDF)</a></p>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="fig">27.5%<small>of fraternity men surveyed had been assaulted or nearly assaulted</small></div>
+      <div>
+        <p>Men are harmed in Greek life too. In a random sample of fraternity members at a large Midwestern university, more than a quarter reported sexual assault or attempted assault since starting college.</p>
+        <p class="src">Luetke et al. (2020). <a href="https://pubmed.ncbi.nlm.nih.gov/31984858/" target="_blank" rel="noopener noreferrer">Abstract on PubMed</a></p>
+      </div>
+    </div>
+
+    <p class="note measure">Research on this topic uses different definitions and survey methods, so exact figures vary between studies. The direction of the findings has been consistent for more than thirty years.</p>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases" data-page hidden>
+  <div class="wrap page">
+    <h1>Cases</h1>
+    <p class="lede">A small sample of cases that reached the news. For every one of these there are countless accounts that never did. Where cases are unresolved, allegations are described as allegations.</p>
+
+    <ol class="timeline">
+      <li>
+        <div class="yr">2010 to 2011</div>
+        <h3>Yale University, Delta Kappa Epsilon</h3>
+        <span class="status-line">Chapter banned from campus for five years</span>
+        <p>Pledges were filmed chanting slogans endorsing rape outside Yale's Women's Center. Students later filed a federal Title IX complaint describing a hostile environment at Yale, and the university suspended the chapter.</p>
+      </li>
+      <li>
+        <div class="yr">2015 to 2016</div>
+        <h3>Stanford University, Kappa Alpha party</h3>
+        <span class="status-line">Conviction; six-month jail sentence</span>
+        <p>A woman who had attended a Kappa Alpha party was assaulted outside while unconscious. Her attacker was convicted of three felonies and served three months. Public anger over the sentence led voters to recall the judge in 2018. The survivor, Chanel Miller, later told her story in the memoir <i>Know My Name</i>.</p>
+        <p class="src"><a href="https://en.wikipedia.org/wiki/People_v._Turner" target="_blank" rel="noopener noreferrer">Case background</a></p>
+      </li>
+      <li>
+        <div class="yr">2021</div>
+        <h3>University of Southern California, Sigma Nu</h3>
+        <span class="status-line">Chapter suspended; police investigation</span>
+        <p>USC issued a campus crime alert after reports of a sexual assault at the Sigma Nu house and of drugs slipped into drinks at a party there. The chapter was suspended, the chapter president was suspended by the university, and students protested outside the house. More reports involving other houses followed within days.</p>
+        <p class="src"><a href="https://abc7.com/post/usc-sigma-nu-fraternity-suspended-sexual-assault/11153512/" target="_blank" rel="noopener noreferrer">ABC7 Los Angeles</a></p>
+      </li>
+      <li>
+        <div class="yr">2024 to present</div>
+        <h3>Cornell University, Chi Phi</h3>
+        <span class="status-line">Civil lawsuit filed September 2026; criminal case reopened</span>
+        <p>A former student alleges she was drugged and sexually assaulted for hours by seven fraternity members after one of them invited others through the chapter's group chat. Cornell barred the chapter, but her lawsuit says only two of the seven were expelled. No criminal charges were filed at first. After the lawsuit drew national attention, the Tompkins County District Attorney announced he was reopening the investigation.</p>
+        <p class="src"><a href="https://www.cbsnews.com/newyork/news/cornell-university-lawsuit-fraternity-rape-allegations/" target="_blank" rel="noopener noreferrer">CBS New York</a> and <a href="https://abcnews.com/US/district-attorney-reopens-case-alleged-cornell-university-gang/story?id=136806149" target="_blank" rel="noopener noreferrer">ABC News</a></p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support" data-page hidden>
+  <div class="wrap page">
+    <h1>Get support</h1>
+    <p class="lede">Whether it happened last night or forty years ago, help exists, and much of it is free. You don't need insurance, a police report, or proof to use any of the services below unless noted.</p>
+
+    <div class="hot" style="margin-top:28px">
+      <div>
+        <h4>National Sexual Assault Hotline (RAINN)</h4>
+        <p class="num"><a href="tel:18006564673">800.656.4673</a></p>
+        <p>Text HOPE to 64673, or chat at <a href="https://rainn.org/hotline" target="_blank" rel="noopener noreferrer">rainn.org/hotline</a>. English and Spanish, 24/7.</p>
+      </div>
+      <div>
+        <h4>988 Suicide &amp; Crisis Lifeline</h4>
+        <p class="num"><a href="tel:988">988</a></p>
+        <p>Call or text 988 if you're thinking about hurting yourself or feel you can't go on.</p>
+      </div>
+      <div>
+        <h4>Crisis Text Line</h4>
+        <p class="num"><a href="sms:741741&body=HOME">741741</a></p>
+        <p>Text HOME to 741741 to reach a trained counselor by text.</p>
+      </div>
+    </div>
+
+    <div class="support-grid">
+      <aside class="toc" aria-label="On this page">
+        <ul>
+          <li><a href="#support-medical" data-anchor="support-medical">Medical care</a></li>
+          <li><a href="#support-uninsured" data-anchor="support-uninsured">No insurance</a></li>
+          <li><a href="#support-counseling" data-anchor="support-counseling">Counseling</a></li>
+          <li><a href="#support-legal" data-anchor="support-legal">Legal and campus rights</a></li>
+          <li><a href="#support-communities" data-anchor="support-communities">Specific communities</a></li>
+          <li><a href="#support-later" data-anchor="support-later">If it was years ago</a></li>
+        </ul>
+      </aside>
+
+      <div>
+        <div class="res-block" id="support-medical">
+          <h2>Medical care</h2>
+          <div class="res">
+            <h4>Forensic medical exam (rape kit)</h4>
+            <p>Available at many hospital emergency rooms, ideally within 5 days (120 hours). It treats injuries and preserves evidence in case you decide to report later. Under federal law, you can have the exam without reporting to police and without paying out of pocket for the exam itself.</p>
+            <p class="how">Ask for a SANE (sexual assault nurse examiner). RAINN can tell you which local hospital has one: <a href="tel:18006564673">800.656.4673</a>.</p>
+          </div>
+          <div class="res">
+            <h4>HIV prevention (PEP)</h4>
+            <p>Post-exposure prophylaxis can prevent HIV if started within 72 hours, and works best the sooner you start. Ask for it at the ER, an urgent care, or a health center.</p>
+          </div>
+          <div class="res">
+            <h4>Emergency contraception</h4>
+            <p>Levonorgestrel pills (Plan B and generics) are sold over the counter without a prescription or ID. They work best within 72 hours. Health centers and Planned Parenthood can advise on other options that work up to 5 days.</p>
+          </div>
+          <div class="res">
+            <h4>STI testing and treatment</h4>
+            <p>Available at campus health centers, community health centers, and Planned Parenthood, often free or on a sliding scale.</p>
+          </div>
+        </div>
+
+        <div class="res-block" id="support-uninsured">
+          <h2>If you don't have insurance</h2>
+          <div class="res">
+            <h4>The forensic exam</h4>
+            <p>Federal law requires states to make sure survivors aren't billed out of pocket for the forensic exam. If you get a bill for the exam itself, call the hospital billing office and your local rape crisis center; advocates deal with this regularly. Other ER charges may still be billed, and victim compensation (below) can often cover them.</p>
+          </div>
+          <div class="res">
+            <h4>Crime victim compensation</h4>
+            <p>Every state has a fund that can pay medical bills, counseling, and lost wages for victims of violent crime, including sexual assault. Rules differ by state and many require some kind of report to police or a medical provider, so ask an advocate before you apply.</p>
+            <p class="how"><a href="https://nacvcb.org/state-information/" target="_blank" rel="noopener noreferrer">Find your state's program (NACVCB)</a></p>
+          </div>
+          <div class="res">
+            <h4>Community health centers</h4>
+            <p>Federally funded clinics charge on a sliding scale based on income, and many see patients who can't pay at all. They provide primary care, STI testing, and often mental health care.</p>
+            <p class="how"><a href="https://findahealthcenter.hrsa.gov/" target="_blank" rel="noopener noreferrer">Find a health center near you (HRSA)</a></p>
+          </div>
+          <div class="res">
+            <h4>Planned Parenthood</h4>
+            <p>STI testing, emergency contraception, and pregnancy care, with sliding-scale fees at many locations.</p>
+            <p class="how"><a href="https://www.plannedparenthood.org/health-center" target="_blank" rel="noopener noreferrer">Find a health center</a></p>
+          </div>
+          <div class="res">
+            <h4>Your campus</h4>
+            <p>If you're a current student, campus health and counseling services are usually free or already covered by your fees, whether or not you file a report.</p>
+          </div>
+        </div>
+
+        <div class="res-block" id="support-counseling">
+          <h2>Counseling</h2>
+          <div class="res">
+            <h4>Local rape crisis centers</h4>
+            <p>Free, confidential counseling, support groups, and advocates who can go with you to the hospital, police, or campus hearings. There are more than a thousand across the country.</p>
+            <p class="how">RAINN connects you to your nearest one at <a href="tel:18006564673">800.656.4673</a>, or search the <a href="https://www.nsvrc.org/organizations" target="_blank" rel="noopener noreferrer">NSVRC directory</a>.</p>
+          </div>
+          <div class="res">
+            <h4>Open Path Collective</h4>
+            <p>A nonprofit network of therapists offering reduced-rate sessions for people without insurance or with limited income.</p>
+            <p class="how"><a href="https://openpathcollective.org/" target="_blank" rel="noopener noreferrer">openpathcollective.org</a></p>
+          </div>
+          <div class="res">
+            <h4>RAINN Youth HelpRoom</h4>
+            <p>Moderated, anonymous group chats for survivors ages 14 to 24.</p>
+            <p class="how"><a href="https://rainn.org/support" target="_blank" rel="noopener noreferrer">rainn.org/support</a></p>
+          </div>
+        </div>
+
+        <div class="res-block" id="support-legal">
+          <h2>Legal and campus rights</h2>
+          <div class="res">
+            <h4>Title IX</h4>
+            <p>Schools that receive federal funding must respond to sexual harassment and assault, including by offering supportive measures like class, housing, or schedule changes, even if you don't file a formal complaint. If your school mishandles your case, you can file a complaint with the U.S. Department of Education's Office for Civil Rights, generally within 180 days.</p>
+            <p class="how"><a href="https://www.knowyourix.org/" target="_blank" rel="noopener noreferrer">Know Your IX</a> explains your rights in plain language. <a href="https://ocrcas.ed.gov/" target="_blank" rel="noopener noreferrer">File with OCR</a>.</p>
+          </div>
+          <div class="res">
+            <h4>Victim Rights Law Center</h4>
+            <p>Free legal help for sexual assault survivors, including students navigating school proceedings, privacy, housing, and employment.</p>
+            <p class="how"><a href="https://victimrights.org/" target="_blank" rel="noopener noreferrer">victimrights.org</a></p>
+          </div>
+          <div class="res">
+            <h4>End Rape On Campus</h4>
+            <p>Survivor-founded organization offering direct support and help filing complaints against schools.</p>
+            <p class="how"><a href="https://endrapeoncampus.org/" target="_blank" rel="noopener noreferrer">endrapeoncampus.org</a></p>
+          </div>
+          <div class="res">
+            <h4>National Crime Victim Law Institute</h4>
+            <p>Can help connect survivors with attorneys who protect their rights in criminal cases.</p>
+            <p class="how"><a href="https://ncvli.org/" target="_blank" rel="noopener noreferrer">ncvli.org</a></p>
+          </div>
+        </div>
+
+        <div class="res-block" id="support-communities">
+          <h2>Specific communities</h2>
+          <div class="res">
+            <h4>1in6, for men and boys</h4>
+            <p>Free, confidential chat and anonymous peer support groups for male survivors.</p>
+            <p class="how"><a href="https://1in6.org/" target="_blank" rel="noopener noreferrer">1in6.org</a></p>
+          </div>
+          <div class="res">
+            <h4>FORGE, for transgender and nonbinary survivors</h4>
+            <p>Resources and referrals to trans-informed providers.</p>
+            <p class="how"><a href="https://forge-forward.org/" target="_blank" rel="noopener noreferrer">forge-forward.org</a></p>
+          </div>
+          <div class="res">
+            <h4>Anti-Violence Project, for LGBTQ+ survivors</h4>
+            <p>24/7 bilingual hotline for LGBTQ+ and HIV-affected survivors of violence.</p>
+            <p class="how"><a href="tel:12127141141">212.714.1141</a> or <a href="https://avp.org/" target="_blank" rel="noopener noreferrer">avp.org</a></p>
+          </div>
+          <div class="res">
+            <h4>StrongHearts Native Helpline</h4>
+            <p>Culturally grounded support for Native American and Alaska Native survivors.</p>
+            <p class="how"><a href="tel:18447628483">844.762.8483</a> or <a href="https://strongheartshelpline.org/" target="_blank" rel="noopener noreferrer">strongheartshelpline.org</a></p>
+          </div>
+          <div class="res">
+            <h4>National Domestic Violence Hotline</h4>
+            <p>If the person who harmed you was a partner or someone you dated.</p>
+            <p class="how"><a href="tel:18007997233">800.799.7233</a> or text START to 88788</p>
+          </div>
+        </div>
+
+        <div class="res-block" id="support-later">
+          <h2>If it happened years ago</h2>
+          <div class="res">
+            <p>There is no deadline on getting support. Rape crisis centers and hotlines work with survivors whose assaults happened decades ago, and it's common for memories and feelings to resurface when a case like Cornell's is in the news.</p>
+            <p>Legal deadlines vary by state and by the type of case. Some states have lengthened or removed time limits for sexual assault claims, and a few have opened temporary windows for older civil claims. A free consultation with a survivor-focused attorney or the Victim Rights Law Center can tell you what's possible where you live.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy" data-page hidden>
+  <div class="wrap page measure">
+    <h1>Privacy and how this works</h1>
+    <h3>What we collect</h3>
+    <p>Only what you type into the form. We don't ask for your name, email, or phone number. The form runs on CryptPad, an open-source service that encrypts your answers before they leave your device, so CryptPad itself can't read them. Only Pledge of Silence can.</p>
+    <h3>What we publish</h3>
+    <p>Counts of accounts by campus, state, chapter, and decade. If you give permission, we also publish your account after removing names and anything else that could identify you or another person. Every account is read by a person before anything is published.</p>
+    <h3>What we don't do</h3>
+    <p>We don't publish the names of individuals, share accounts with schools, police, or fraternity organizations, or contact you. Because we don't know who you are, we can't follow up, so if you want help, please use the <a href="#support" data-route="support">support page</a>.</p>
+    <h3>If you change your mind</h3>
+    <p>Because accounts are anonymous, we can't look yours up. If you want an account removed, <a href="mailto:localtip@proton.me">write to us</a> describing the campus, chapter, and year, and we'll remove matching accounts where we can.</p>
+    <p>An email address can identify you. To stay anonymous, write from a new account that isn't linked to your name or phone number, such as a free Gmail or Proton Mail account set up under a made-up name.</p>
+    <h3>Staying safe</h3>
+    <p>The <strong>Leave now</strong> button at the top of every page, or pressing Esc twice, takes you straight to a weather page. It doesn't erase your browser history, so if someone else uses your device, a private window is the safest choice.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Pledge of Silence is a <a href="https://stayferalamerica.com" target="_blank" rel="noopener noreferrer">Feral America</a> project. It is not a law enforcement agency, a university, or a legal service.</p>
+    <p><a href="mailto:localtip@proton.me">Contact us</a></p>
+    <p>If you are in immediate danger, call 911.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* Quick exit */
+  var EXIT_URL = "https://weather.com/";
+  function leave(){
+    try{ document.body.innerHTML = ""; }catch(e){}
+    try{ window.top.location.replace(EXIT_URL); return; }catch(e){}
+    try{ window.location.replace(EXIT_URL); }catch(e){}
+  }
+  document.getElementById("exit").addEventListener("click", leave);
+  var lastEsc = 0;
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      var now = Date.now();
+      if(now - lastEsc < 800){ leave(); }
+      lastEsc = now;
+    }
+  });
+
+  /* Routing */
+  var pages = document.querySelectorAll("[data-page]");
+  var navLinks = document.querySelectorAll("nav a[data-route]");
+  function show(route, anchor){
+    var found = false;
+    pages.forEach(function(p){ var on = p.id === route; p.hidden = !on; if(on) found = true; });
+    if(!found){ route = "home"; document.getElementById("home").hidden = false; }
+    navLinks.forEach(function(a){
+      if(a.dataset.route === route) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
+    });
+    if(anchor){
+      var el = document.getElementById(anchor);
+      if(el){ setTimeout(function(){ el.scrollIntoView({block:"start"}); }, 30); return; }
+    }
+    window.scrollTo(0,0);
+  }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[data-route], a[data-anchor]");
+    if(!a) return;
+    e.preventDefault();
+    var route = a.dataset.route || "support";
+    var anchor = a.dataset.anchor || null;
+    try{ history.replaceState(null, "", "#" + (anchor || route)); }catch(err){}
+    show(route, anchor);
+  });
+  function fromHash(){
+    var h = (location.hash || "#home").slice(1);
+    if(h.indexOf("support-") === 0) show("support", h); else show(h);
+  }
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+
+  /* Hero letters fade in once */
+  var letters = document.getElementById("letters");
+  requestAnimationFrame(function(){ setTimeout(function(){ letters.classList.add("lit"); }, 200); });
+
+})();
+</script>
+</body>
+</html>
